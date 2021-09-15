@@ -9,7 +9,7 @@ export default function parser(req: IncomingMessage & {body: any}, res: http.Ser
     try {
       if(typeof req.body === "object") {
         // it looks like body is empty, or it is already parsed as JSON
-        next();
+        return next();
       }
       req.body = Converter.convertFrom1C(req.body);
       next();
