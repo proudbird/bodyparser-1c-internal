@@ -8,6 +8,10 @@ const converter_1c_internal_1 = require("converter-1c-internal");
 function parser(req, res, next) {
     function parse1cInternal(err) {
         try {
+            if (typeof req.body === "object") {
+                // it looks like body is empty, or it is already parsed as JSON
+                next();
+            }
             req.body = converter_1c_internal_1.Converter.convertFrom1C(req.body);
             next();
         }
